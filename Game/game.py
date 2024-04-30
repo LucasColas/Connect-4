@@ -36,23 +36,33 @@ class Game:
         self.empty_color = (0, 0, 0)
         self.grid_width = 5
         self.window = pygame.display.set_mode((self.window_width, self.window_height))
-        
         self.grid_height = self.window_height - self.top_bar
         self.winner = 0
 
 
     def draw_grid(self):
-        # draw grid. So first draw rectangles and then draw circles
+        
         self.window.fill(self.empty_color)
         for i in range(self.rows):
             for j in range(self.cols):
-                pygame.draw.rect(self.window, self.grid_color, (j * self.cell_width, i * self.cell_height + self.top_bar, self.cell_width, self.cell_height))
+                pygame.draw.rect(self.window, self.grid_color, 
+                                 (j * self.cell_width, i * self.cell_height + self.top_bar, 
+                                  self.cell_width, self.cell_height))
                 if self.grid[i][j] == 1:
-                    pygame.draw.circle(self.window, self.player1_color, (j * self.cell_width + self.cell_width // 2, i * self.cell_height + self.cell_height // 2 + self.top_bar), self.disc_radius)
+                    pygame.draw.circle(self.window, self.player1_color, 
+                                       (j * self.cell_width + self.cell_width // 2, 
+                                        i * self.cell_height + self.cell_height // 2 + self.top_bar), 
+                                        self.disc_radius)
                 elif self.grid[i][j] == 2:
-                    pygame.draw.circle(self.window, self.player2_color, (j * self.cell_width + self.cell_width // 2, i * self.cell_height + self.cell_height // 2 + self.top_bar), self.disc_radius)
+                    pygame.draw.circle(self.window, self.player2_color, 
+                                       (j * self.cell_width + self.cell_width // 2, 
+                                        i * self.cell_height + self.cell_height // 2 + self.top_bar), 
+                                        self.disc_radius)
                 else:
-                    pygame.draw.circle(self.window, self.empty_color, (j * self.cell_width + self.cell_width // 2, i * self.cell_height + self.cell_height // 2 + self.top_bar), self.disc_radius)
+                    pygame.draw.circle(self.window, self.empty_color, 
+                                       (j * self.cell_width + self.cell_width // 2, 
+                                        i * self.cell_height + self.cell_height // 2 + self.top_bar), 
+                                        self.disc_radius)
 
     def change_turn(self):
         self.turn = 1 if self.turn == 2 else 2
@@ -94,7 +104,6 @@ class Game:
 
         
     def draw_winner(self):
-        # Create a font that fits the top bar and display the text where lies the top bar
         
         font = pygame.font.SysFont("Arial", self.top_bar)
         text = font.render(f"Player {self.winner} wins!", True, (255, 255, 255))
