@@ -125,7 +125,7 @@ class Game:
                         self.check_winner()
                         if self.winner:
                             print(f"Player {self.winner} wins!")
-                            #running = False
+                            
                         self.change_turn()
             if self.winner:
                 self.draw_winner()
